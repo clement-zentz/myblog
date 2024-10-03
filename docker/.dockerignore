@@ -1,0 +1,37 @@
+# secrets
+../.env
+secrets/
+
+# Ignorer les fichiers de configuration de virtualenv
+venv/
+myblog-venv/
+
+# Ignorer les fichiers de cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignorer les fichiers de base de données SQLite (si vous en utilisez un pour le développement local)
+*.sqlite3
+
+# Ignorer les fichiers de logs
+*.log
+
+# Ignorer les fichiers de documentation
+docs/
+
+# Ignorer les fichiers de build et de distribution
+build/
+dist/
+
+# Ignorer les fichiers de configuration de l'IDE
+.vscode/
+.idea/
+
+# Ignorer les fichiers de configuration de Git
+.git/
+.gitignore
+
+# Ignorer les fichiers de configuration de pip
+pip-log.txt
+pip-delete-this-directory.txt

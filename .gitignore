@@ -1,0 +1,36 @@
+# secrets
+.env
+docker/secrets
+
+# Environnement virtuel
+myblog-venv/
+
+# Fichiers de base de données
+db.sqlite3
+
+# Fichiers de cache
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Fichiers de logs
+*.log
+
+# Fichiers de build et de distribution
+build/
+dist/
+*.egg-info/
+
+# Fichiers de configuration IDE
+.vscode/
+.idea/
+.pytest_cache/
+
+# Fichiers de documentation générés
+docs/_build/
+
+# Fichiers de tests
+*.coverage
+.coverage
+coverage/

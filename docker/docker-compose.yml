@@ -1,0 +1,47 @@
+# docker-compose.yml
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: /run/secrets/db_name
+      POSTGRES_USER: /run/secrets/db_user
+      POSTGRES_PASSWORD: /run/secrets/db_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # - ./init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
+    secrets:
+      - db_name
+      - db_user
+      - db_password
+
+  web:
+    build: # build context = parent dir
+      context: .. 
+      dockerfile: docker/Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ../manage.py:/app/manage.py
+      - ../requirements.txt:/app/requirements.txt
+      - ../app:/app/app
+      # - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db # service name
+    environment:
+      DATABASE_URL: /run/secrets/db_url
+    secrets:
+      - db_url
+
+secrets:
+  db_name:
+    file: secrets/db_name.txt
+  db_user:
+    file: secrets/db_user.txt
+  db_password:
+    file: secrets/db_password.txt
+  db_url:
+    file: secrets/db_url.txt
+
+volumes:
+  postgres_data:

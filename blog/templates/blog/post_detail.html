@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Detail de l'article{% endblock %}
+
+{% block content %}
+    <!-- post detail -->
+    {% load markdown_extras %}
+    <h1>{{ post.title }}</h1>
+    {% for category in post.category.all %}
+        <h2>{{ category.name }}</h2>
+    {% endfor %}
+    <p>{{ post.content|markdown|safe }}</p>
+{% endblock content %}

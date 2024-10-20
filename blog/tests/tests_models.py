@@ -88,8 +88,62 @@ class PostModelTest(TestCase):
             author=self.author1)
         post1.category.add(category1, category2)
         self.assertEqual(post1.category.count(), 2)
-        self.assertEqual(post1.category.all()[0].name, category1.name)
-        self.assertEqual(post1.category.all()[1].name, category2.name)
+        self.assertEqual(post1.category.all()[0], category1)
+        self.assertEqual(post1.category.all()[1], category2)
+
+    def test_post_multiple_comments_same_user(self):
+        user2 = User.objects.create(
+            username="user2", password="mypassword")
+        post1 = Post.objects.create(
+            title="Test post",
+            content="this is a test post.",
+            published_date=timezone.now(),
+            author=self.author1)
+        comment1 = Comment(
+            content="This is a test comment.",
+            post=post1,
+            author=user2)
+        comment2 = Comment(
+            content="This is a test comment.",
+            post=post1,
+            author=user2)
+        comment1.save()
+        comment2.save()
+        self.assertEqual(post1.comments.all()[0], comment1)
+        self.assertEqual(post1.comments.all()[1], comment2)
+        
+    def test_post_multiple_comments_different_users(self):
+        user2 = User.objects.create(
+            username="user2", password="mypassword")
+        user3 = User.objects.create(
+            username="user3", password="mypassword")
+        post1 = Post.objects.create(
+            title="Test post",
+            content="this is a test post.",
+            published_date=timezone.now(),
+            author=self.author1)
+        comment1 = Comment(
+            content="This is a test comment.",
+            post=post1,
+            author=user2)
+        comment2 = Comment(
+            content="This is a test comment.",
+            post=post1,
+            author=user3)
+        comment1.save()
+        comment2.save()
+        self.assertEqual(post1.comments.all()[0], comment1)
+        self.assertEqual(post1.comments.all()[1], comment2)
+
+    def test_post_approval(self):
+        post1 = Post.objects.create(
+            title="Test post",
+            content="This is a test post content.",
+            author=self.author1)
+        self.assertFalse(post1.approved)
+        post1.approved = True
+        post1.save()
+        self.assertTrue(post1.approved)
 
     def test_post_cascade_delete(self):
         post1 = Post.objects.create(
@@ -103,8 +157,7 @@ class PostModelTest(TestCase):
             Post.objects.filter(id=post1.id).exists())
 
 class CommentModelTest(TestCase):
-    # a comment need one author, 
-    # one user and one post instance
+    # a comment need one post and one user instance
     def setUp(self):
         user1 = User.objects.create(
             username="user1", password="user1_password")
@@ -132,7 +185,7 @@ class CommentModelTest(TestCase):
     
     def test_comment_correct(self):
         comment1 = Comment.objects.create(
-            content='c'*255,
+            content='d'*255,
             post=self.post1,
             author=self.user2)
         try:
@@ -145,6 +198,7 @@ class CommentModelTest(TestCase):
             content="this is a test comment.",
             post=self.post1,
             author=self.user2)
+        self.assertFalse(comment1.approved)
         comment1.approved = True
         comment1.save()
         self.assertTrue(comment1.approved)
@@ -155,5 +209,6 @@ class CommentModelTest(TestCase):
             post=self.post1,
             author=self.user2)
         self.post1.delete()
+        self.assertFalse(Comment.objects.contains(comment1))
         self.assertFalse(
             Comment.objects.filter(id=comment1.id).exists())

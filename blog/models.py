@@ -17,7 +17,7 @@ class Category(models.Model):
 class Author(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE)
-    bio = models.CharField(max_length=500, blank=True)
+    bio = models.TextField(blank=True)
     profile_picture = models.ImageField(
         upload_to='profile_pics/', blank=True)
     
@@ -31,11 +31,17 @@ class Author(models.Model):
     def __str__(self):
         return self.user.username
     
+# TODO ajouter un mécanisme de notifications :
+# - pour les utilisateurs lambda
+# - pour l'administrateur
 class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
-    created_date = models.DateTimeField(auto_now_add=True)
-    published_date = models.DateTimeField(default=timezone.now)
+    approved = models.BooleanField(default=False)
+    thumbnail=models.ImageField(blank=True)
+    created_date = models.DateTimeField(auto_now_add=True) 
+    published_date = models.DateTimeField(
+        default=timezone.now, blank=True)
     updated_date = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(
         Author, on_delete=models.CASCADE)
@@ -45,6 +51,8 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+# TODO revoir les commentaires :
+# ajouter, modifier, supprimer, répondre(<==>tchat)
 class Comment(models.Model):
     content = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)

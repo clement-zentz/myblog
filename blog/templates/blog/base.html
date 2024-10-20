@@ -1,0 +1,28 @@
+<!-- menu -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Mon blog{% endblock %}</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'blog/style.css' %}">
+    <script src=""></script>
+</head>
+<body>
+    <!-- TODO ajouter une flêche de retour
+     lorsque l'on click sur un post -->
+    <nav>
+        <ul class="menu">
+            <li id="logo"><img src="{% static 'blog/images/logo_cz.png' %}" /></li>
+            <li><a href="{% url 'blog:post-list' %}">Page d'accueil</a></li>
+            <li><a href="{% url 'blog:about' %}">A propos</a></li>
+            <li><a href="{% url 'blog:contact' %}">Contact</a></li>
+            <!-- TODO ajouter une section déroulante (aide mémoire) -->
+        </ul>
+    </nav>
+    <div name="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

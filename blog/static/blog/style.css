@@ -1,0 +1,110 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Merriweather';
+    src: url('fonts/Merriweather/Merriweather-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+p, h1, h2, h3{
+    font-family: 'Merriweather', serif;
+}
+
+body{
+    margin: 0;
+    background-color: #262626;
+    color: whitesmoke;
+    text-align: center;
+}
+
+/* TODO add a favicon.ico */
+
+/* .content{
+    display: inline-flex;
+    flex-direction: column;
+} */
+
+/* container == parent */
+.menu {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    height: 6rem;
+    list-style: none;
+    background-color: #004953;
+    font-size: 2rem;
+    margin: 0;
+    opacity: 0.8;
+}
+
+.menu li>img{
+    height: 6rem;
+    vertical-align: bottom;
+    justify-content: flex-end;
+}
+
+.menu li a{
+    text-decoration: none;
+    color: whitesmoke;
+    padding: 0.2rem;
+}
+
+.menu li a:hover{
+    color: #004953;
+    background-color: whitesmoke;
+    border-radius: 0.4rem;
+}
+
+/* flex container */
+.post_list{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    list-style: none;
+}
+
+/* uiliser chaque li comme container pour flex */
+.post_list li{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 15rem;
+    height: 15rem;
+}
+
+.post_list li a{
+    text-decoration: none;
+    height: 2.5rem;
+    line-height: 1.2;
+    align-content: center;
+    color: whitesmoke;
+    padding: 0.2rem;
+}
+
+.post_list li a:hover{
+    color: #004953;
+    border-radius: 0.4rem;
+    background-color: whitesmoke;
+}
+
+.img_place_holder{
+    background-color: whitesmoke;
+    width: 100px;
+    height: 100px;
+}
+
+.img_place_holder:hover{
+    background-color: #004953;
+}

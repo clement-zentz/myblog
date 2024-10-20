@@ -2,8 +2,13 @@
 .env
 docker/secrets
 
+#fixtures
+fixtures/
+app/
+
 # Environnement virtuel
 myblog-venv/
+pip/cache/
 
 # Fichiers de base de données
 db.sqlite3

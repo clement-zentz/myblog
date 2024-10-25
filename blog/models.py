@@ -19,7 +19,7 @@ class Author(models.Model):
         User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True)
     profile_picture = models.ImageField(
-        upload_to='profile_pics/', blank=True)
+        upload_to='author_pics/', blank=True)
     
     def clean(self):
         if self.bio and len(self.bio) > 500:
@@ -38,7 +38,8 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     approved = models.BooleanField(default=False)
-    thumbnail=models.ImageField(blank=True)
+    thumbnail=models.ImageField(
+        upload_to="post_thumbnail/", blank=True)
     created_date = models.DateTimeField(auto_now_add=True) 
     published_date = models.DateTimeField(
         default=timezone.now, blank=True)

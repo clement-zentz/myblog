@@ -23,6 +23,8 @@ services:
       - ../manage.py:/app/manage.py
       - ../requirements.txt:/app/requirements.txt
       - ../app:/app/app
+      # media files (ex: pictures...)
+      - media_volume:/app/media
       # - .:/app
     ports:
       - "8000:8000"

@@ -1,7 +1,6 @@
 # settings/development.py
 from .base import *
 
-
 ALLOWED_HOSTS = config(
     'DEV_ALLOWED_HOSTS', default='', \
     cast=lambda v: [s.strip() for s in v.split(',')]

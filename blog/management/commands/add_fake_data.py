@@ -1,17 +1,31 @@
 from django.core.management.base import BaseCommand
 from blog.models import Post, Author, Category, Comment
 from django.contrib.auth.models import User
+
 from faker import Faker
 import random
+from decouple import config
+import pytz
+from datetime import datetime
+from django.conf import settings
 
 class Command(BaseCommand):
     help = 'Ajouter des données dans la base'
 
     def handle(self, *args, **kwargs):
+
+        # ---------- superuser ----------
+        superuser_username=config("SUPERUSER_USERNAME")
+        superuser_password=config("SUPERUSER_PASSWORD")
+        User.objects.create_superuser(
+            username=superuser_username, 
+            password=superuser_password
+        )
+
         fake = Faker()
 
         #---------- User ----------
-        for _ in range(100):
+        for _ in range(30):
             username_n = fake.name()
             password_n = fake.password()
             user_n =User.objects.create_user(
@@ -56,10 +70,15 @@ class Command(BaseCommand):
         #---------- Post ----------
         authors = Author.objects.all()
         categories = Category.objects.all()
+        timezone = pytz.timezone(settings.TIME_ZONE)
         for _ in range(20):
             title_n = fake.sentence()
             content_n = fake.paragraph(nb_sentences=5)
-            published_date_n = fake.date()
+            #----- date -----
+            naive_date = fake.date_time()
+            aware_date = timezone.localize(naive_date)
+            published_date_n = aware_date
+            #----------------
             approved_n = fake.boolean()
             author_n = random.choice(authors)
             category_n = random.choice(categories)
@@ -69,8 +88,9 @@ class Command(BaseCommand):
                 published_date=published_date_n,
                 approved=approved_n,
                 author=author_n,
-                category=category_n
             )
+            post_n.category.add(category_n)
+
             self.stdout.write(
                 self.style.SUCCESS(
                     f'Post "{post_n.title}" created'

@@ -2,6 +2,9 @@
 .env
 docker/secrets
 
+#docker
+docker/
+
 #fixtures
 fixtures/
 app/

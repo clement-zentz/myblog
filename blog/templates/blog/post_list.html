@@ -3,19 +3,20 @@
 {% block title %}Page d'accueil{% endblock %}
 
 {% block content %}
-<h2>Liste des articles:</h2>
-<!-- TODO ajouter des boutons pour les catégories -->
-
-    {% if posts %}
-        <ul class="post_list">
-            {% for post in posts %}
-                <li>
-                    <div class="img_place_holder"></div>
-                    <a href="{% url 'blog:post-detail' post.pk %}">{{post.title}}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p> no blog post are available.</p>
-    {% endif %}
+    <div class="post-list_container">
+        <h2>Liste des articles:</h2>
+        <!-- TODO ajouter des boutons pour les catégories -->
+        {% if posts %}
+            <ul class="post_list">
+                {% for post in posts %}
+                    <li>
+                        <div class="img_place_holder"></div>
+                        <a href="{% url 'blog:post-detail' post.pk %}">{{post.title}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p> no blog post are available.</p>
+        {% endif %}
+    </div>
 {% endblock content %}

@@ -2,12 +2,17 @@
 .env
 docker/secrets
 
+# production
+gunicorn.service
+myblog.conf
+productionfiles
+
 #docker
-docker/
+docker
+app/
 
 #fixtures
 fixtures/
-app/
 
 # Environnement virtuel
 myblog-venv/

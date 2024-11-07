@@ -16,7 +16,7 @@ class PostListView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         queryset = queryset.filter(approved=True)
-        return queryset[:5]
+        return queryset[:15]
 
 class PostDetailView(DetailView):
     model = Post

@@ -1,4 +1,4 @@
-# deploy/deploy.sh
+# scripts/deploy.sh
 #!/bin/bash
 
 # Charger la variable VENV_PATH depuis le fichier .env
@@ -9,13 +9,20 @@ sudo systemctl stop gunicorn
 # Arrêter Nginx
 sudo systemctl stop nginx
 
+# change directory to git repo 
+cd ../
 # Mettre à jour le code
 git pull origin main
-# change to project directory 
-cd myblog
 
 # Activer l'environnement virtuel
 source $VENV_PATH/bin/activate
+
+# check if venv is activated
+if [ $? -ne 0 ]
+then
+    echo "Virtual environment could not be activated."
+    exit 1
+fi
 
 # Installer les dépendances
 pip install -r requirements.txt
@@ -24,7 +31,7 @@ pip install -r requirements.txt
 python manage.py migrate
 
 # Collecter les fichiers statiques
-python manage.py collectstatic --noinput
+python manage.py collectstatic
 
-sudo systemctl start gunicorn
-sudo systemctl start nginx
+sudo systemctl restart gunicorn
+sudo systemctl restart nginx

@@ -5,18 +5,22 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     {% load static %}
     <link rel="stylesheet" href="{% static 'blog/style.css' %}">
-    <script src="{% static 'blog/script.js' %}"></script>
+    <script type="text/javascript" src="{% static 'blog/script.js' %}"></script>
 </head>
 <body>
     <!-- TODO ajouter une flêche de retour
      lorsque l'on click sur un post -->
     <nav>
+        <a href="{% url 'blog:home' %}">
+            <img id="logo" src="{% static 'blog/images/logo_cz.png' %}"/>
+        </a>
+        <img id="menu-icon" src="{% static 'blog/icons/menu-icon.svg' %}" alt="Menu icon"/>
+        <img id="search-icon" src="{% static 'blog/icons/search-icon.svg' %}" alt="Search icon"/>
         <ul class="menu">
-            <li id="logo"><img src="{% static 'blog/images/logo_cz.png' %}" /></li>
-            <li><a href="{% url 'blog:post-list' %}">Page d'accueil</a></li>
+            <li><a href="{% url 'blog:home' %}">Page d'accueil</a></li>
+            <li><a href="{% url 'blog:post-list' %}">Blog</a></li>
             <li><a href="{% url 'blog:about' %}">A propos</a></li>
             <li><a href="{% url 'blog:contact' %}">Contact</a></li>
-            <li><img src="{% static 'blog/icons/menu-icon.svg' %}" alt="Menu icon" width="50" height="50"></li>
             <!-- TODO ajouter une section déroulante (aide mémoire) -->
         </ul>
     </nav>

@@ -5,7 +5,8 @@ docker/secrets
 # production
 gunicorn.service
 myblog.conf
-productionfiles
+myblog/productionfiles
+myblog.sock
 
 #docker
 docker

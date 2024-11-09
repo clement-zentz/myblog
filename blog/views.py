@@ -23,6 +23,9 @@ class PostDetailView(DetailView):
     template_name = 'blog/post_detail.html'
     context_object_name = "post"
 
+def home(request):
+    return render(request, 'blog/home.html')
+
 def about(request):
     return render(request, 'blog/about.html')
 

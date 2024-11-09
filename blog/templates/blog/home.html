@@ -3,4 +3,9 @@
 {% block title %}Page d'accueil{% endblock %}
 
 {% block content %}
+
+    <h3>Welcome to my personnal website !</h3>
+    <p>
+        You can visit my blog <a href="{% url 'blog:post-list' %}">here</a>.
+    </p>
 {% endblock content %}

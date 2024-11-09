@@ -31,7 +31,7 @@ pip install -r requirements.txt
 python manage.py migrate
 
 # Collecter les fichiers statiques
-python manage.py collectstatic
+python manage.py collectstatic --noinput
 
 sudo systemctl restart gunicorn
 sudo systemctl restart nginx

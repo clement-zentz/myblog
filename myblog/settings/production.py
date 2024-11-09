@@ -25,6 +25,15 @@ SESSION_COOKIE_SECURE = True
 
 CSP_DEFAULT_SRC = ("'self'",)
 
+# Number of login attempts allowed 
+# before a failure locks out an IP address
+AXES_FAILURE_LIMIT = 3  
+# Lock out the IP address after 
+# the number of failed login attempts
+AXES_LOCK_OUT_AT_FAILURE = True
+# Number of hours to lock out the IP address  
+AXES_COOLOFF_TIME = 1  
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -35,3 +44,4 @@ DATABASES = {
         'PORT': config('PROD_DATABASE_PORT'),
     }
 }
+

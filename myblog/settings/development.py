@@ -10,6 +10,8 @@ ALLOWED_HOSTS = config(
 
 DEBUG = True
 
+STATIC_ROOT = BASE_DIR / '..' / 'blog' / 'static'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

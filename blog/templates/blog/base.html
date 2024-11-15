@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>html{display: none;}</style>
     <title>{% block title %}Mon blog{% endblock %}</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     {% load static %}
     <link rel="stylesheet" href="{% static 'blog/style.css' %}">
-    <script type="text/javascript" src="{% static 'blog/script.js' %}"></script>
+    <script src="{% static 'blog/script.js' %}" defer></script>
+    <link rel="shortcut icon" href="{% static 'blog/favicon.ico' %}" type="image/x-icon">
 </head>
 <body>
-    <!-- TODO ajouter une flêche de retour
-     lorsque l'on click sur un post -->
+    {% load svg_tags %}
     <nav>
-        <a href="{% url 'blog:home' %}">
-            <img id="logo" src="{% static 'blog/images/logo_cz.png' %}"/>
+        <a id="logo" href="{% url 'blog:home' %}">
+            <img src="{% static 'blog/images/logo_cz.png' %}"/>
         </a>
-        <img id="menu-icon" src="{% static 'blog/icons/menu-icon.svg' %}" alt="Menu icon"/>
-        <img id="search-icon" src="{% static 'blog/icons/search-icon.svg' %}" alt="Search icon"/>
+        {% load_svg 'menu-icon' %}
+        {% load_svg 'search-icon' %}
         <ul class="menu">
             <li><a href="{% url 'blog:home' %}">Page d'accueil</a></li>
             <li><a href="{% url 'blog:post-list' %}">Blog</a></li>

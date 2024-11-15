@@ -19,11 +19,11 @@ from django.urls import include, path
 # media files
 from django.conf import settings
 from django.conf.urls.static import static
-from blog.views import PostListView
+from blog.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', PostListView.as_view(), name='post-list'),
+    path('', home, name='home'),
     path("blog/", include("blog.urls")),
 ]
 

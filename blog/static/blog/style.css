@@ -30,53 +30,59 @@ body, html{
     height: 100%;
 }
 
-/* PC, tablet */
-/* @media (min-width: 768px) { */
+nav {
+    display: flex;
+    color: #fff;
+    background-color: #004953;
+    width: 100%;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
 
-    nav {
-        color: #fff;
-        background-color: #004953;
-        height: 6rem;
-        display: flex;
-        justify-content: center;
-        margin: 0;
-        padding: 0;
-    }
+}
 
-    #logo{
-        height: 6rem;
-        width: 6rem;
-    }
+#logo, img {
+    height: 6rem;
+    width: 6rem;
+    align-self: center;
+}
 
-    #menu-icon{
-        display: none;
-    }
+#search-icon{
+    height: 6rem;
+    width: 6rem;
+}
 
-    .menu {
-        font-family: 'Roboto', sans-serif;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        list-style: none;
-        font-size: 2rem;
-        margin: 0;
-        padding: 0;
-        opacity: 0.8;
-    }
+#menu-icon{
+    display: none;
+}
 
-    .menu li a{
-        text-decoration: none;
-        color: whitesmoke;
-        padding: 0.2rem;
-    }
+.menu {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    list-style: none;
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+    opacity: 0.8;
+}
 
-    .menu li a:hover{
-        color: #004953;
-        background-color: whitesmoke;
-        border-radius: 0.4rem;
-    }
+.menu li a{
+    text-decoration: none;
+    color: whitesmoke;
+    padding: 0.2rem;
+}
+
+.menu li a:hover{
+    color: #004953;
+    background-color: whitesmoke;
+    border-radius: 0.4rem;
+}
 
 
 /*---------- Post list ----------*/
@@ -150,20 +156,16 @@ body, html{
         flex-wrap: wrap;
     }
 
-    #logo{
-        height: 100%;
-    }
-
     #menu-icon{
-        display: inline;
-        height: 100%;
-        margin-right: 1rem;
+        display: block;
+        margin-right: 0.5rem;
         order: 3;
+        width: 6rem;
+        height: 6rem;
     }
 
     #search-icon{
-        height: 6rem;
-        margin-left: 1rem;
+        margin-left: 0.5rem;
     }
 
     .menu{
@@ -182,8 +184,6 @@ body, html{
 
     .menu.show {
         display: flex;
-        align-items: center;
-        justify-content: center;
         order: 4;
     }
 
@@ -191,26 +191,37 @@ body, html{
         flex-basis: 100%;
     }
 
-    #menu-icon:hover{
+    /* #menu-icon:hover{
         background-color: aqua;
-    }
+    } */
 
     nav ul.collapsed {
         display: none;
     }
 
-    /* css animation */
-    #menu-icon line {
-        transition: stroke-dasharray 0.3s ease-in-out, stroke-dashoffset 0.3s ease-in-out;
+    /*---------- css animation ----------*/
+    /* Initial styling for the menu icon */
+    #menu-icon {
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
     }
       
-    #menu-icon.open line:nth-child(1) {
-        stroke-dasharray: 1 90;
-        stroke-dashoffset: -90;
+    #menu-icon.cross rect:nth-child(1) {
+        transform: rotate(45deg) translate(1rem, 1rem);
+        transform-origin: center;
     }
       
-    #menu-icon.open line:nth-child(2) {
-        stroke-dasharray: 90 1;
-        stroke-dashoffset: -90;
+    #menu-icon.cross rect:nth-child(2) {
+        opacity: 0;
     }
+    
+    #menu-icon.cross rect:nth-child(3) {
+        transform: rotate(-45deg) translate(1rem, -1rem);
+        transform-origin: center;
+    }
+}
+
+/* FOUC solved */
+html{
+    display: block;
 }

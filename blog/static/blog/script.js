@@ -1,5 +1,4 @@
 // script.js
-
 document.addEventListener('DOMContentLoaded', () => {
   const menuIcon = document.getElementById('menu-icon');
   const menu = document.querySelector('.menu');
@@ -8,6 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     menu.classList.toggle('show');
     // Modify the SVG content to display a cross
     // Toggle the 'open' class on the menu-icon
-    menuIcon.classList.toggle('open');
+    menuIcon.classList.toggle('cross');
   });
 });

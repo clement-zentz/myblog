@@ -1,13 +1,14 @@
 # settings/staging.py
 from .base import *
 
-
 ALLOWED_HOSTS = config(
     'STAGE_ALLOWED_HOSTS', default='', \
     cast=lambda v: [s.strip() for s in v.split(',')]
 )
 
 DEBUG = True
+
+STATIC_ROOT = BASE_DIR / 'productionfiles'
 
 DATABASES = {
     'default': {

@@ -15,7 +15,7 @@ cd ../
 git pull origin main
 
 # Activer l'environnement virtuel
-source $VENV_PATH/bin/activate
+source $VENV_PATH
 
 # check if venv is activated
 if [ $? -ne 0 ]
@@ -28,7 +28,7 @@ fi
 pip install -r requirements.txt
 
 # Appliquer les migrations
-python manage.py migrate
+python3 manage.py migrate
 
 # Collecter les fichiers statiques
 python manage.py collectstatic --noinput

@@ -4,11 +4,6 @@
 # Charger la variable VENV_PATH depuis le fichier .env
 export $(grep '^VENV_PATH=' .env)
 
-# Arrêter les services
-sudo systemctl stop gunicorn
-# Arrêter Nginx
-sudo systemctl stop nginx
-
 # change directory to git repo 
 cd ../
 # Mettre à jour le code
@@ -31,7 +26,7 @@ pip install -r requirements.txt
 python3 manage.py migrate
 
 # Collecter les fichiers statiques
-python manage.py collectstatic --noinput
+python3 manage.py collectstatic --noinput
 
 sudo systemctl restart gunicorn
 sudo systemctl restart nginx

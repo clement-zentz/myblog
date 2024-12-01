@@ -1,5 +1,5 @@
 # settings/staging.py
-from .base import *
+from .production import *
 
 ALLOWED_HOSTS = config(
     'STAGE_ALLOWED_HOSTS', default='', \
@@ -7,8 +7,6 @@ ALLOWED_HOSTS = config(
 )
 
 DEBUG = True
-
-STATIC_ROOT = BASE_DIR / 'productionfiles'
 
 DATABASES = {
     'default': {

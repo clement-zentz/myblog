@@ -90,11 +90,23 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# django-axes
+#---------- django-axes ----------
 AUTHENTICATION_BACKENDS = [
     'axes.backends.AxesStandaloneBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
+# Number of login attempts allowed
+# before a failure locks out an IP address
+AXES_FAILURE_LIMIT = 3
+# Lock out the IP address after
+# the number of failed login attempts
+AXES_LOCK_OUT_AT_FAILURE = True
+# Number of hours to lock out the IP address
+AXES_COOLOFF_TIME = 1
+ # Utiliser l'agent utilisateur 
+ # pour identifier les tentatives de connexion
+AXES_USE_USER_AGENT = True
+#-------------------------------
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

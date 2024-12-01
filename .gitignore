@@ -1,13 +1,13 @@
+# ignore folder
+ignore/
+
 # secrets
 *.env
 docker/secrets
 
 # production
-gunicorn.service
-myblog.conf
 myblog/productionfiles
 myblog.sock
-scripts
 
 #docker
 docker

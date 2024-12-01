@@ -6,12 +6,15 @@ from decouple import config
 
 def main():
 
+    # settings=config("DJANGO_SETTINGS_MODULE")
+    # print(f"settings value = {settings}.")
+
     """Run administrative tasks."""
     os.environ.setdefault(
         'DJANGO_SETTINGS_MODULE', 
         config(
             'DJANGO_SETTINGS_MODULE', 
-            default='myblog.settings.development'
+            default='myblog.settings.production'
         )
     )
     try:

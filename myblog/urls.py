@@ -20,9 +20,22 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 from blog.views import home
+# load env var
+from decouple import config
+
+admin_custom_url = config("ADMIN_URL")
+
+env_string = config("DJANGO_SETTINGS_MODULE")
+env_splited = env_string.rsplit('.', 1)
+last_part = env_splited[-1]
+
+if last_part in ['production', 'staging']:
+    admin_url = admin_custom_url
+else:
+    admin_url = 'admin/'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(admin_url, admin.site.urls),
     path('', home, name='home'),
     path("blog/", include("blog.urls")),
 ]

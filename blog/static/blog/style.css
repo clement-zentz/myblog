@@ -138,7 +138,7 @@ nav {
 /*----------------------------------*/
 
 /*---------- Post detail ----------*/
-.detail-container {
+.detail-container, .home-container {
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
@@ -207,7 +207,7 @@ nav {
     }
       
     #menu-icon.cross rect:nth-child(1) {
-        transform: rotate(45deg) translate(1rem, 1rem);
+        transform: rotate(45deg) translate(1rem, 1  rem);
         transform-origin: center;
     }
       

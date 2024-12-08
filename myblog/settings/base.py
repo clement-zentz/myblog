@@ -103,9 +103,6 @@ AXES_FAILURE_LIMIT = 3
 AXES_LOCK_OUT_AT_FAILURE = True
 # Number of hours to lock out the IP address
 AXES_COOLOFF_TIME = 1
- # Utiliser l'agent utilisateur 
- # pour identifier les tentatives de connexion
-AXES_USE_USER_AGENT = True
 #-------------------------------
 
 # Internationalization

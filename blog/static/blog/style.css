@@ -207,7 +207,7 @@ nav {
     }
       
     #menu-icon.cross rect:nth-child(1) {
-        transform: rotate(45deg) translate(1rem, 1  rem);
+        transform: rotate(45deg) translate(1rem, 1rem);
         transform-origin: center;
     }
       

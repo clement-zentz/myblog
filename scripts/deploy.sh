@@ -1,11 +1,11 @@
 # scripts/deploy.sh
 #!/bin/bash
 
-# Charger la variable VENV_PATH depuis le fichier .env
-export $(grep '^VENV_PATH=' .env)
+# exécuter ce script depuis le dossier root du projet
 
-# change directory to git repo 
-cd ../
+# Charger la variable VENV_PATH depuis le fichier .env
+export $(grep '^VENV_PATH=' .env | xargs)
+
 # Mettre à jour le code
 git pull origin main
 
@@ -28,5 +28,8 @@ python3 manage.py migrate
 # Collecter les fichiers statiques
 python3 manage.py collectstatic --noinput
 
+# redémarrer gunicorn et nginx
 sudo systemctl restart gunicorn
 sudo systemctl restart nginx
+
+echo "Mise à jour et redémarrage terminés."

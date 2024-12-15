@@ -20,16 +20,16 @@ source "$ENV_FILE_PATH"
 set +a
 
 # Vérifier que les variables sont définies
-if [ -z "$PROD_PORT" ] || [ -z "$PROD_ENV_LOCAL_PATH" ] || \
+if [ -z "$PROD_PORT" ] || [ -z "$ENV_LOCAL_PATH" ] || \
 [ -z "$PROD_USERNAME" ] || [ -z "$PROD_IP_ADDRESS" ] || \
-[ -z "$PROD_ENV_REMOTE_PATH" ]; then
+[ -z "$ENV_REMOTE_PATH" ]; then
     echo "Une ou plusieurs variables d'environnement ne sont pas définies."
     exit 1
 fi
 
 # transfert env file to vps
-scp -P $PROD_PORT $PROD_ENV_LOCAL_PATH \
-    $PROD_USERNAME@$PROD_IP_ADDRESS:$PROD_ENV_REMOTE_PATH
+scp -P $PROD_PORT $ENV_LOCAL_PATH \
+    $PROD_USERNAME@$PROD_IP_ADDRESS:$ENV_REMOTE_PATH
 
 # Vérifier le statut de la commande
 if [ $? -eq 0 ]; then

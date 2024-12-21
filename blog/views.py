@@ -31,3 +31,6 @@ def about(request):
 
 def contact(request):
     return render(request, 'blog/contact.html')
+
+def news(request):
+    return render(request, 'blog/news.html')

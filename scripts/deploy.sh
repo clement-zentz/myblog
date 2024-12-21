@@ -9,6 +9,9 @@ export $(grep '^VENV_PATH=' .env | xargs)
 # Mettre à jour le code
 git pull origin main
 
+absolute_path=$(pwd)
+VENV_PATH="$absolute_path/$VENV_PATH"
+
 # Activer l'environnement virtuel
 source $VENV_PATH
 
@@ -25,8 +28,10 @@ pip install -r requirements.txt
 # Appliquer les migrations
 python3 manage.py migrate
 
+#---------- Uncomment venv variable first ! ----------
 # Collecter les fichiers statiques
 python3 manage.py collectstatic --noinput
+#-----------------------------------------------------
 
 # redémarrer gunicorn et nginx
 sudo systemctl restart gunicorn

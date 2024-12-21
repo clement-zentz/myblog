@@ -1,18 +1,15 @@
 #!/bin/bash
 # transfer_srv_files_to_staging.sh
 
-# exécuter ce script depuis le dossier "root" du projet
-
-# Set the locale to handle special characters
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+# execute this script from "root" project folder
+# For HTTPS :
+# add a self-signed ssl certificate before running this script
+# or execute the ssl_autosign_cert.sh script before running this one
 
 # Chemin absolue vers le fichier .env
 ENV_FILE_PATH=$(pwd)
-
+ENV_FILE_PATH+='/.env'
 echo $ENV_FILE_PATH
-
-ENV_FILE_PATH+="/.env"
 
 # Vérifier l'existence du fichier .env
 if [ ! -f "$ENV_FILE_PATH" ]; then
@@ -29,7 +26,7 @@ set +a
 
 # Vérifier que les variables sont définies
 if [ -z "$STAGE_PORT" ] ||[ -z "$STAGE_USERNAME" ] || \
-[ -z "$STAGE_IP_ADDRESS" ] || [ -z "$SSH_COMMANDS_PATH" ]; then
+[ -z "$STAGE_IP_ADDRESS" ]; then
     echo "Une ou plusieurs variables d'environnement ne sont pas définies."
     exit 1
 fi
@@ -37,25 +34,28 @@ fi
 scp -P $STAGE_PORT $GUNICORN_LOCAL_PATH \
     $STAGE_USERNAME@$STAGE_IP_ADDRESS:$GUNICORN_REMOTE_PATH
 
-NEW_FILE_NAME=$STAGE_HTTPS_FILENAME
-OLD_FILE_NAME=$STAGE_HTTP_FILENAME
+NEW_FILE_NAME=$STAGE_HTTP_FILENAME
+OLD_FILE_NAME=$STAGE_HTTPS_FILENAME
 
 scp -P $STAGE_PORT $NGINX_LOCAL_PATH/$NEW_FILE_NAME \
     $STAGE_USERNAME@$STAGE_IP_ADDRESS:$NGINX_REMOTE_PATH/$NEW_FILE_NAME
 
+
 read -sp 'Enter sudo password: ' sudo_password
 echo
-
-# TODO add ssl certificate first
 
 SSH_COMMANDS="
 echo '$sudo_password' | sudo -S -v
 sudo apt-get update 
 sudo apt-get upgrade -y
-sudo ln -s $NGINX_REMOTE_PATH/$NEW_FILE_NAME $NGINX_SITES_ENABLED_PATH/$NEW_FILE_NAME 
+sudo ln -s $NGINX_REMOTE_PATH/$NEW_FILE_NAME $NGINX_SITES_ENABLED_PATH/$NEW_FILE_NAME
+ls -l $NGINX_SITES_ENABLED_PATH/
 sudo rm $NGINX_SITES_ENABLED_PATH/$OLD_FILE_NAME
-echo '$sudo_password' | sudo systemctl restart gunicorn 
+ls -l $NGINX_SITES_ENABLED_PATH/
+echo '$sudo_password' | sudo systemctl daemon-reload
+echo '$sudo_password' | sudo systemctl restart gunicorn
 echo '$sudo_password' | sudo systemctl restart nginx 
+echo '$sudo_password' | sudo nginx -t
 "
 
 # exécute les commandes ssh

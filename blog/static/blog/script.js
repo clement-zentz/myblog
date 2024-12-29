@@ -10,3 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     menuIcon.classList.toggle('cross');
   });
 });
+
+function goBack() {
+  window.history.back();
+}

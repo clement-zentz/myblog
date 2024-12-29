@@ -46,15 +46,17 @@ echo
 
 SSH_COMMANDS="
 echo '$sudo_password' | sudo -S -v
-sudo apt-get update 
+sudo apt-get update
 sudo apt-get upgrade -y
+echo
+sudo rm $NGINX_SITES_ENABLED_PATH/$NEW_FILE_NAME
 sudo ln -s $NGINX_REMOTE_PATH/$NEW_FILE_NAME $NGINX_SITES_ENABLED_PATH/$NEW_FILE_NAME
 ls -l $NGINX_SITES_ENABLED_PATH/
 sudo rm $NGINX_SITES_ENABLED_PATH/$OLD_FILE_NAME
 ls -l $NGINX_SITES_ENABLED_PATH/
 echo '$sudo_password' | sudo systemctl daemon-reload
 echo '$sudo_password' | sudo systemctl restart gunicorn
-echo '$sudo_password' | sudo systemctl restart nginx 
+echo '$sudo_password' | sudo systemctl restart nginx
 echo '$sudo_password' | sudo nginx -t
 "
 

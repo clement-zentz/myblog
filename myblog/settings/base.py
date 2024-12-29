@@ -110,12 +110,11 @@ AXES_COOLOFF_TIME = 1
 
 LANGUAGE_CODE = 'en-us'
 
+USE_TZ = True
+
 TIME_ZONE = 'Europe/Paris'
 
 USE_I18N = True
-
-USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/

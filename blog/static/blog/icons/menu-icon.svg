@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg id="menu-icon" viewBox="0 0 100 80" width="6rem" height="6rem" xmlns="http://www.w3.org/2000/svg">
-  <rect y="0" width="100" height="20" rx="8" style="fill:#fff;stroke:#fff;stroke-width:2"></rect>
-  <rect y="30" width="100" height="20" rx="8" style="fill:#fff;stroke:#fff;stroke-width:2"></rect>
-  <rect y="60" width="100" height="20" rx="8" style="fill:#fff;stroke:#fff;stroke-width:2"></rect>
-</svg>  
+<svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80" width="6rem" height="6rem">
+  <rect y="0" width="100" height="15" rx="8" style="fill:#fff;stroke:#fff;stroke-width:2"></rect>
+  <rect y="30" width="100" height="15" rx="8" style="fill:#fff;stroke:#fff;stroke-width:2"></rect>
+  <rect y="60" width="100" height="15" rx="8" style="fill:#fff;stroke:#fff;stroke-width:2"></rect>
+</svg>

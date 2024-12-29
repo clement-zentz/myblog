@@ -12,13 +12,15 @@
     font-style: normal;
 }
 
-/* TODO add a favicon.ico */
-/* container == parent */
-
 /*---------- base.html ---------- */
 
 p, h1, h2, h3{
     font-family: 'Merriweather', serif;
+}
+
+#article_list {
+    margin: 1.5rem;
+    padding: 0.5rem;
 }
 
 body, html{
@@ -46,7 +48,6 @@ nav {
 #logo, img {
     height: 6rem;
     width: 6rem;
-    align-self: center;
 }
 
 #search-icon{
@@ -56,6 +57,11 @@ nav {
 
 #menu-icon{
     display: none;
+}
+
+#back_arrow{
+    position: absolute;
+    left: 0;
 }
 
 .menu {
@@ -100,45 +106,40 @@ nav {
 
 /* uiliser chaque li comme container pour flex */
 .post_list li{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
     width: 15rem;
     height: 15rem;
 }
 
-.post_list li a{
+.post_list a{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*---*/
     text-decoration: none;
     height: 2.5rem;
     line-height: 1.2;
     align-content: center;
     color: whitesmoke;
     padding: 0.2rem;
+    width: 100%;
+    height: 100%;
+}
+
+.img_place_holder{
+    background-color: grey;
+    border-radius: 0.5rem;
 }
 
 .post_list li a:hover{
     color: #004953;
-    border-radius: 0.4rem;
-    background-color: whitesmoke;
-}
-
-.img_place_holder{
-    background-color: whitesmoke;
-    width: 100px;
-    height: 100px;
-    border-radius: 0.4rem;
-}
-
-.img_place_holder:hover{
-    background-color: #004953;
-    border-radius: 0.4rem;
+    border-radius: 0.5rem;
+    background-color: lightgray;
 }
 /*----------------------------------*/
 
 /*---------- Post detail ----------*/
-.detail-container, .home-container, .news-container {
+div[name="content"]{
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
@@ -150,6 +151,10 @@ nav {
 /* smartphones, small tablet */
 @media (max-width: 768px) {
 
+    div[name="content"]{
+        width: 95%;
+    }
+
     nav{
         height: fit-content;
         justify-content: space-between;
@@ -157,7 +162,7 @@ nav {
     }
 
     #menu-icon{
-        display: block;
+        display: inline;
         margin-right: 0.5rem;
         order: 3;
         width: 6rem;
@@ -187,38 +192,35 @@ nav {
         order: 4;
     }
 
-    .menu>li{
-        flex-basis: 100%;
-    }
-
-    /* #menu-icon:hover{
-        background-color: aqua;
-    } */
-
     nav ul.collapsed {
         display: none;
     }
 
     /*---------- css animation ----------*/
-    /* Initial styling for the menu icon */
     #menu-icon {
         cursor: pointer;
         transition: transform 0.3s ease-in-out;
     }
-      
+    
+    #menu-icon rect {
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        fill: black; /* Assurez-vous que les traits sont visibles */
+    }
+    
     #menu-icon.cross rect:nth-child(1) {
-        transform: rotate(45deg) translate(1rem, 1rem);
+        transform: rotate(45deg) translate(12px, 12px);
         transform-origin: center;
     }
-      
+    
     #menu-icon.cross rect:nth-child(2) {
         opacity: 0;
     }
     
     #menu-icon.cross rect:nth-child(3) {
-        transform: rotate(-45deg) translate(1rem, -1rem);
+        transform: rotate(-45deg) translate(12px, -12px);
         transform-origin: center;
     }
+    /*-----------------------------------*/
 }
 
 /* FOUC solved */

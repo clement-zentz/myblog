@@ -6,8 +6,6 @@ ALLOWED_HOSTS = config(
     cast=lambda v: [s.strip() for s in v.split(',')]
 )
 
-# ALLOWED_HOSTS=[]
-
 DEBUG = True
 
 STATIC_ROOT = BASE_DIR / '..' / 'blog' / 'static'

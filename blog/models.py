@@ -8,11 +8,30 @@ from django.utils.translation import gettext_lazy as _
 
 # models free of foreign key first.
 class Category(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-    description = models.TextField(blank=True)
+    # metadata fields
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return self.name
+        return self.pk
+
+class CategoryTranslation(models.Model):
+    category = models.ForeignKey(
+        Category, 
+        related_name='translations', 
+        on_delete=models.CASCADE
+    )
+    language_code = models.CharField(max_length=15)
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+
+    class Meta:
+        # une seule traduction par category + langue
+        unique_together = ('category', 'language_code')
+
+    def __str__(self) -> str:
+        return f"{self.name} ({self.language_code})"
+
     
 class Author(models.Model):
     user = models.OneToOneField(
@@ -35,8 +54,6 @@ class Author(models.Model):
 # - pour les utilisateurs lambda
 # - pour l'administrateur
 class Post(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField()
     approved = models.BooleanField(default=False)
     thumbnail=models.ImageField(
         upload_to="post_thumbnail/", blank=True)
@@ -50,7 +67,24 @@ class Post(models.Model):
         Category, related_name='posts')
     
     def __str__(self):
-        return self.title
+        return self.pk
+
+class PostTranslation(models.Model):
+    post = models.ForeignKey(
+        Post, 
+        related_name='translations', 
+        on_delete=models.CASCADE)
+    language_code = models.CharField(max_length=15)
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+
+    class Meta:
+        # une seule traduction par post + langue
+        unique_together = ('post', 'language_code')
+    
+    def __str__(self):
+        return f"{self.title} ({self.language_code})"
+
 
 # TODO revoir les commentaires :
 # ajouter, modifier, supprimer, répondre(<==>tchat)

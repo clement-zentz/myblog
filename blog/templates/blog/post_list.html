@@ -8,11 +8,11 @@
         <!-- TODO ajouter des boutons pour les catégories -->
         {% if posts %}
             <ul class="post_list">
-                {% for post in posts %}
+                {% for post_translation in posts %}
                     <li>
-                        <a href="{% url 'blog:post-detail' post.pk %}">
+                        <a href="{% url 'blog:post-detail' post_translation.pk %}">
                             <img class="img_place_holder"></img>
-                            <h4>{{post.title}}</h4>
+                            <h4>{{post_translation.title|truncatewords:75}}</h4>
                         </a>
                     </li>
                 {% endfor %}

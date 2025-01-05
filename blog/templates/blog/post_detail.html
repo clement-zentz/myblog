@@ -6,10 +6,10 @@
     <!-- post detail -->
     <div class="detail-container">
         {% load markdown_extras %}
-        <h1>{{ post.title }}</h1>
-        {% for category in post.category.all %}
+        <h1>{{ post_translation.title }}</h1>
+        {% for category in post_translation.category.all %}
             <h2>{{ category.name }}</h2>
         {% endfor %}
-        <p>{{ post.content|markdown|safe }}</p>
+        <p>{{ post_translation.content|markdown|safe }}</p>
     </div>
 {% endblock content %}

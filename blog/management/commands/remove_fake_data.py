@@ -10,8 +10,18 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         try:
             # Supprime toutes les instances des modèles
-            User.objects.all().delete()
-            Category.objects.all().delete()
+            users_to_delete = User.objects.filter(
+                is_staff=False,
+                is_superuser=False)
+            
+            users_to_delete.delete()
+
+            categories_to_delete = Category.objects.exclude(
+                id=1000
+            )
+            
+            categories_to_delete.delete()
+
             self.stdout.write(
                 self.style.SUCCESS(
                     'Toutes les données ont été supprimmées avec succès'

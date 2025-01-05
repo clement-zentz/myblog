@@ -22,12 +22,13 @@
         </a>
         {% load_svg 'menu-icon' %}
         {% comment %} {% load_svg 'search-icon' %} {% endcomment %}
+        {% load i18n %}
         <ul class="menu">
-            <li><a href="{% url 'blog:home' %}">Page d'accueil</a></li>
+            <li><a href="{% url 'blog:home' %}">{% trans "Home" %}</a></li>
             <li><a href="{% url 'blog:post-list' %}">Blog</a></li>
-            <li><a href="{% url 'blog:about' %}">A propos</a></li>
-            <li><a href="{% url 'blog:contact' %}">Contact</a></li>
-            <li><a href="{% url 'blog:news' %}">News</a></li>
+            <li><a href="{% url 'blog:about' %}">{% trans "About me" %}</a></li>
+            <li><a href="{% url 'blog:contact' %}">{% trans "Contact" %}</a></li>
+            <li><a href="{% url 'blog:news' %}">{% trans News %}</a></li>
             <!-- TODO ajouter une section déroulante (aide mémoire) -->
         </ul>
     </nav>

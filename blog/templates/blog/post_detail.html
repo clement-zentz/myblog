@@ -7,7 +7,7 @@
     <div class="detail-container">
         {% load markdown_extras %}
         <h1>{{ post_translation.title }}</h1>
-        {% for category in post_translation.category.all %}
+        {% for category in p_categ_tr %}
             <h2>{{ category.name }}</h2>
         {% endfor %}
         <p>{{ post_translation.content|markdown|safe }}</p>

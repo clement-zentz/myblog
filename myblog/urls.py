@@ -36,6 +36,9 @@ else:
 
 urlpatterns = [
     path(admin_url, admin.site.urls),
+    # translation
+    path('i18n/', include('django.conf.urls.i18n')),
+    # blog app  
     path('', home, name='home'),
     path("blog/", include("blog.urls")),
 ]

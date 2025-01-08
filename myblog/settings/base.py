@@ -45,6 +45,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'axes.middleware.AxesMiddleware',
+    # translations
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'myblog.urls'
@@ -60,6 +62,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # translation
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -109,7 +113,11 @@ AXES_COOLOFF_TIME = 1
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+
+# default = 'en_us'
+# en is generic 
+# (for all sub category languages)
+LANGUAGE_CODE = 'en'
 
 LANGUAGES = [
     ('en', gettext_lazy('English')),

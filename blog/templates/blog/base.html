@@ -10,6 +10,8 @@
     <link rel="shortcut icon" href="{% static 'blog/favicon.ico' %}" type="image/x-icon">
 </head>
 <body>
+    {% comment %} TRANSLATION {% endcomment %}
+    {% load i18n %}
     {% load svg_tags %}
     {% comment %} {% if request.path != home_url %}
     <a id="back_arrow" href="javascript:void(0);" onclick="goBack()">
@@ -28,7 +30,8 @@
             <li><a href="{% url 'blog:post-list' %}">Blog</a></li>
             <li><a href="{% url 'blog:about' %}">{% trans "About me" %}</a></li>
             <li><a href="{% url 'blog:contact' %}">{% trans "Contact" %}</a></li>
-            <li><a href="{% url 'blog:news' %}">{% trans News %}</a></li>
+            <li><a href="{% url 'blog:news' %}">{% trans "News" %}</a></li>
+            {% include 'blog/includes/language_selector.html' %}
             <!-- TODO ajouter une section déroulante (aide mémoire) -->
         </ul>
     </nav>

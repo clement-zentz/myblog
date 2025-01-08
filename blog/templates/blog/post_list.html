@@ -10,9 +10,9 @@
             <ul class="post_list">
                 {% for post_translation in posts %}
                     <li>
-                        <a href="{% url 'blog:post-detail' post_translation.pk %}">
+                        <a href="{% url 'blog:post-detail' post_translation.post.id %}">
                             <img class="img_place_holder"></img>
-                            <h4>{{post_translation.title|truncatewords:75}}</h4>
+                            <h4>{{ post_translation.title|truncatewords:75 }}</h4>
                         </a>
                     </li>
                 {% endfor %}

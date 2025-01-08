@@ -39,6 +39,9 @@ msgstr "A propos"
 msgid "Contact"
 msgstr "Contacte"
 
+msgid "News"
+msgstr "Nouvelles"
+
 #: .\myblog-venv\Lib\site-packages\django\contrib\messages\apps.py:16
 msgid "Messages"
 msgstr ""

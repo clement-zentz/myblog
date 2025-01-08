@@ -13,7 +13,7 @@ class Category(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return self.pk
+        return str(self.pk)
 
 class CategoryTranslation(models.Model):
     category = models.ForeignKey(
@@ -67,7 +67,7 @@ class Post(models.Model):
         Category, related_name='posts')
     
     def __str__(self):
-        return self.pk
+        return str(self.pk)
 
 class PostTranslation(models.Model):
     post = models.ForeignKey(

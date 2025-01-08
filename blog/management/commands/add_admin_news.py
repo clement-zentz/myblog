@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 from django.db import transaction
 from django.utils import timezone
 
-from faker import Faker
-import random
 from decouple import config
 
 class Command(BaseCommand):
@@ -15,7 +13,6 @@ class Command(BaseCommand):
     @transaction.atomic
     def handle(self, *args, **kwargs):
         try:
-            # TODO update categ and post with translation
             # ---------- superuser ----------
             superuser_username=config("SUPERUSER_USERNAME")
             superuser_password=config("SUPERUSER_PASSWORD")
@@ -36,13 +33,13 @@ class Command(BaseCommand):
 
             category_x.save()
 
-            category_en = CategoryTranslation.objects.create(
+            CategoryTranslation.objects.create(
                 category = category_x,
                 language_code = 'en',
                 name = "News",
                 description = "Some news about the project."
             )
-            category_fr = CategoryTranslation.objects.create(
+            CategoryTranslation.objects.create(
                 category = category_x,
                 language_code = 'fr',
                 name = "Nouvelles",
@@ -59,8 +56,7 @@ class Command(BaseCommand):
             )
             news_post.save()
 
-            title="Latest News:", 
-            content="Replace it with real content.",
+            news_post.category.add(category_x)
 
             # English translation
             PostTranslation.objects.create(
@@ -77,7 +73,11 @@ class Command(BaseCommand):
                 content='Le contenu des nouvelles.'
             )
 
-            news_post.category.add(category_x)
+            self.stdout.write(
+                self.style.SUCCESS(
+                    'Toutes les données ont été ajoutées avec succès'
+                )
+            )
 
         except Exception as e:
             transaction.set_rollback(True)

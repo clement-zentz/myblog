@@ -15,8 +15,8 @@ class Command(BaseCommand):
     @transaction.atomic
     def handle(self, *args, **kwargs):
         try:
-            fake_en = Faker("en_EN")
-            fake_fr = Faker("fr_FR")
+            fake_en = Faker("en")
+            fake_fr = Faker("fr")
 
             #---------- User ----------
             for _ in range(12):
@@ -89,7 +89,7 @@ class Command(BaseCommand):
 
             #---------- Post ----------
             authors = Author.objects.all()
-            categories = Category.objects.exclude(name='News')
+            categories = Category.objects.exclude(id=1000)
             for _ in range(50):
                 published_date_n = timezone.now()
                 approved_n = fake_en.boolean()

@@ -10,5 +10,14 @@
             <h2>{{ category.name }}</h2>
         {% endfor %}
         <p>{{ post_translation.content|markdown|safe }}</p>
+
+        <div id="container">
+            <div id="traffic-light">
+                <div id="light1" class="lights"></div>
+                <div id="light2" class="lights"></div>
+                <div id="light3" class="lights"></div>
+            </div>
+        </div>
+
     </div>
 {% endblock %}

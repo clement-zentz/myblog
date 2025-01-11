@@ -223,6 +223,44 @@ div[name="content"]{
     /*-----------------------------------*/
 }
 
+/* traffic-light */
+#container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#traffic-light{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 6rem;
+    height: 12rem;
+    background-color: black;
+    border-radius: 1rem;
+}
+
+.lights{
+    border-radius: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: grey;
+}
+
+#light1{
+    background-color: red;
+}
+
+/* #light2{
+    background-color: orange;
+} */
+
+/* #light3{
+    background-color: lightgreen;
+} */
+
 /* FOUC solved */
 html{
     display: block;

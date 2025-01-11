@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-05 21:59+0100\n"
+"POT-Creation-Date: 2025-01-10 22:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
 #: .\blog\models.py:46
 #, python-format
 msgid "Bio size = %(val)s > %(max)s characters."
@@ -27,18 +28,19 @@ msgstr ""
 msgid "Comment size = %(val)s > %(max)s characters."
 msgstr ""
 
-#: .\blog\templates\blog\base.html:29
+#: .\blog\templates\blog\base.html:32
 msgid "Home"
 msgstr "Accueil"
 
-#: .\blog\templates\blog\base.html:31
+#: .\blog\templates\blog\base.html:34
 msgid "About me"
 msgstr "A propos"
 
-#: .\blog\templates\blog\base.html:32
+#: .\blog\templates\blog\base.html:35
 msgid "Contact"
 msgstr "Contacte"
 
+#: .\blog\templates\blog\base.html:36
 msgid "News"
 msgstr "Nouvelles"
 
@@ -1266,10 +1268,10 @@ msgstr ""
 msgid "Connect, get help, or contribute"
 msgstr ""
 
-#: .\myblog\settings\base.py:115
+#: .\myblog\settings\base.py:123
 msgid "English"
 msgstr ""
 
-#: .\myblog\settings\base.py:116
+#: .\myblog\settings\base.py:124
 msgid "French"
 msgstr ""
